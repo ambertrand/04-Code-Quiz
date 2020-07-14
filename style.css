@@ -1,0 +1,8 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+.timeLeft {
+    display: flex;
+    justify-content: flex-end;
+}
