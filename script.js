@@ -1,3 +1,6 @@
+const timer = document.getElementById('timeLeft')
+const viewHighScores = document.getElementById('highScores')
+const startBtn = document.getElementById('startBtn')
 
 
 
