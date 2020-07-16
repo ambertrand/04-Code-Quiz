@@ -5,3 +5,7 @@
 #liveQuiz {
     display: none;
 }
+
+#finishedQuiz {
+    display: none;
+}
