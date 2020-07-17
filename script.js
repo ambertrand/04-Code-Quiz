@@ -1,7 +1,8 @@
+$(document).ready(function() {
+
 // Setting variables
 const timer = document.getElementById("timeLeft");
 const viewHighScores = document.getElementById("highScores");
-const startBtn = document.getElementById("startBtn");
 const questionTitle = document.getElementById("questionName");
 const answer1 = document.getElementById("1")
 const answer2 = document.getElementById("2")
@@ -9,6 +10,7 @@ const answer3 = document.getElementById("3")
 const answer4 = document.getElementById("4")
 const questionAnswer = document.getElementById("questionAnswer")
 
+// Source https://www.w3schools.com/js/js_quiz.asp
 // Setting questions
 let quizQuestions = [
     {
@@ -76,6 +78,12 @@ let quizQuestions = [
         correctAnswer: "3"
     },
 ]
+
+$('startBtn').on("click", function() {
+    console.log("Btn clicked");
+})
+
+});
 
 
 //## User Story
