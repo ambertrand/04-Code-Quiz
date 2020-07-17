@@ -10,6 +10,10 @@
     display: none;
 }
 
+.btn-outline-primary {
+    margin: 5px;
+}
+
 #finishedQuiz {
     display: none;
 }

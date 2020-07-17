@@ -1,28 +1,12 @@
 $(document).ready(function () {
 
-    // Setting variables
-    let timer = 45;
-    let score = 0;
-    const startBtn = document.querySelector("#startBtn");
-    const timerDisplay = document.querySelector("#timeLeft")
-    const quizQuest = document.querySelector("#questionName");
-    const answer1 = document.getElementById('1');
-    const answer2 = document.getElementById('2');
-    const answer3 = document.getElementById('3');
-    const answer4 = document.getElementById('4');
-    let timerLeft;
-    let questionIndex = 0;
-
     // Source https://www.w3schools.com/js/js_quiz.asp
     // Setting questions
-    let quizQuestions = [
+    const quizQuestions = [
         {
             questionTitle: "How can you add a comment in a Javascript file",
-            choice1: "//This is a comment",
-            choice2: "<!--This is a comment-->",
-            choice3: "'This is a comment",
-            choice4: "$(This is a comment)",
-            correctAnswer: "1"
+            choices: ["//This is a comment", "<!--This is a comment-->", "'This is a comment", "$(This is a comment)"],
+            correctAnswer: "0"
         },
         {
             questionTitle: "Arrays in Javascript can be used to store _",
@@ -82,12 +66,21 @@ $(document).ready(function () {
         },
     ]
 
+    // Setting variables
+    const startBtn = document.querySelector("#startBtn");
+    const timerDisplay = document.querySelector("#timeLeft")
+    let timer = 45;
+    let score = 0;
+    let timerLeft;
+    let questionIndex = 0;
+
+
     // When start button clicked timer starts countdown and Quiz starts
     $(startBtn).on("click", function () {
         // console.log("Button clicked");
         document.querySelector("#startPage").style.display = "none";
         document.querySelector("#startQuiz").style.display = "block";
-
+        
         timerLeft = setInterval(function () {
             timer--;
             timerDisplay.innerText = timer + "sec";
@@ -96,18 +89,28 @@ $(document).ready(function () {
                 // finishedQuiz();
             }
         }, 1000)
-        // startQuiz();
         showQuestions();
-    })
+    });
 
+    //  Adds question from question array to appear on page and loops through all questions
     function showQuestions() {
-       q = quizQuestions[questionIndex];
-       quizQuest.textContent = q.questionTitle;
-       answer1.textContent = q.choice1;
-       answer2.textContent = q.choice2;
-       answer3.textContent = q.choice3;
-       answer4.textContent = q.choice4;
+        $("h3#questionName").text(quizQuestions[questionIndex].questionTitle);
+        for (let i = 0; i < quizQuestions[questionIndex].choices.length; i++ ) {
+            $(".btn-"+ (i + 1)).text(quizQuestions[questionIndex].choices[i])
+        }
     }
+
+    function checkAnswer() {
+        if(quizQuestions[questionIndex].correctAnswer === $(this).data("index")) {
+            score++;
+        }
+        console.log(score);
+        // questionIndex++;
+        // showQuestions();
+    }
+
+    $(".btn-outline-primary").on("click", checkAnswer);
+
 });
 
 
@@ -121,10 +124,6 @@ $(document).ready(function () {
 
 // ## Acceptance Criteria
 
-// ```
-// GIVEN I am taking a code quiz
-// WHEN I click the start button
-// THEN a timer starts and I am presented with a question
 // WHEN I answer a question
 // THEN I am presented with another question
 // WHEN I answer a question incorrectly
