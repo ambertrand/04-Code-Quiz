@@ -92,11 +92,16 @@ $(document).ready(function () {
             timerDisplay.innerText = timer + "sec";
             if (timer <= 0) {
                 clearInterval(timerLeft);
-                finishedQuiz();
+                // finishedQuiz();
             }
         }, 1000)
+        // startQuiz();
+        // showQuestions();
     })
 
+    function showQuestions() {
+        
+    }
 });
 
 
