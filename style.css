@@ -2,7 +2,11 @@
     font-family: 'Roboto', sans-serif;
 }
 
-#liveQuiz {
+#startPage {
+    display: block;
+}
+
+#startQuiz {
     display: none;
 }
 
