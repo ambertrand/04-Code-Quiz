@@ -11,72 +11,73 @@ $(document).ready(function () {
     const answer3 = document.getElementById('3');
     const answer4 = document.getElementById('4');
     let timerLeft;
+    let questionIndex = 0;
 
     // Source https://www.w3schools.com/js/js_quiz.asp
     // Setting questions
     let quizQuestions = [
         {
             questionTitle: "How can you add a comment in a Javascript file",
-            answer1: "//This is a comment",
-            answer2: "<!--This is a comment-->",
-            answer3: "'This is a comment",
-            answer4: "$(This is a comment)",
+            choice1: "//This is a comment",
+            choice2: "<!--This is a comment-->",
+            choice3: "'This is a comment",
+            choice4: "$(This is a comment)",
             correctAnswer: "1"
         },
         {
             questionTitle: "Arrays in Javascript can be used to store _",
-            answer1: "numbers and strings",
-            answer2: "booleans",
-            answer3: "other arrays",
-            answer4: "All of the above",
+            choice1: "numbers and strings",
+            choice2: "booleans",
+            choice3: "other arrays",
+            choice4: "All of the above",
             correctAnswer: "4"
         },
         {
             questionTitle: "What does DOM stand for?",
-            answer1: "Developer Office Machine",
-            answer2: "Document Object Model",
-            answer3: "Database Object Module",
-            answer4: "Database Output Model",
+            choice1: "Developer Office Machine",
+            choice2: "Document Object Model",
+            choice3: "Database Object Module",
+            choice4: "Database Output Model",
             correctAnswer: "2"
         },
         {
             questionTitle: "Inside which HTML element do we put the Javascript",
-            answer1: "<js>",
-            answer2: "<script>",
-            answer3: "<form>",
-            answer4: "<javascript>",
+            choice1: "<js>",
+            choice2: "<script>",
+            choice3: "<form>",
+            choice4: "<javascript>",
             correctAnswer: "2"
         },
         {
             questionTitle: "Commonly used data types DO NOT include:",
-            answer1: "strings",
-            answer2: "booleans",
-            answer3: "alerts",
-            answer4: "numbers",
+            choice1: "strings",
+            choice2: "booleans",
+            choice3: "alerts",
+            choice4: "numbers",
             correctAnswer: "3"
         },
         {
             questionTitle: "How many columns are available in a page?",
-            answer1: "15",
-            answer2: "4",
-            answer3: "8",
-            answer4: "12",
+            choice1: "15",
+            choice2: "4",
+            choice3: "8",
+            choice4: "12",
             correctAnswer: "4"
         },
         {
             questionTitle: "What does API stand for?",
-            answer1: "Assisted Python Integration",
-            answer2: "Application Pre Interview",
-            answer3: "Application Programming Interface",
-            answer4: "Assisted Programming Interface",
+            choice1: "Assisted Python Integration",
+            choice2: "Application Pre Interview",
+            choice3: "Application Programming Interface",
+            choice4: "Assisted Programming Interface",
             correctAnswer: "3"
         },
         {
             questionTitle: "How does a FOR loop start",
-            answer1: "for(i = 0; i < 5; i++)",
-            answer2: "for(i = 0; i < 5++)",
-            answer3: "for (i <= 5; i+=)",
-            answer4: "for ",
+            choice1: "for(i = 0; i < 5; i++)",
+            choice2: "for(i = 0; i < 5++)",
+            choice3: "for (i <= 5; i+=)",
+            choice4: "for ",
             correctAnswer: "3"
         },
     ]
@@ -96,11 +97,16 @@ $(document).ready(function () {
             }
         }, 1000)
         // startQuiz();
-        // showQuestions();
+        showQuestions();
     })
 
     function showQuestions() {
-        
+       q = quizQuestions[questionIndex];
+       quizQuest.textContent = q.questionTitle;
+       answer1.textContent = q.choice1;
+       answer2.textContent = q.choice2;
+       answer3.textContent = q.choice3;
+       answer4.textContent = q.choice4;
     }
 });
 
