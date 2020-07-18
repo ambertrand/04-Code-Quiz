@@ -64,7 +64,7 @@ $(document).ready(function () {
     });
 
 
-    //     //  Adds question from question array to appear on page and loops through all questions
+    //  Adds question from question array to appear on page and loops through all questions
     function showQuestions() {
         if ((questionIndex >= quizQuestions.length)) {
             return gameOver();
@@ -104,7 +104,7 @@ $(document).ready(function () {
         finalScore();
     }
 
-    $(".answer-button").on("click", ClickedAnswer);
+
 
     // Quiz ends when timer is less or equal to 0 or quiz is finished.
     function gameOver() {
@@ -121,7 +121,46 @@ $(document).ready(function () {
         $("span#finalScore").text("Your Final Score is " + score);
     }
 
+    let scoreArray = [];
 
+    // This stores score and initials in local storage
+    function localScoreStorage() {
+        scoreArray = JSON.parse(localStorage.getItem("scores"))
+        const initials = $("#initialsInput").val();
+        let userScore = {initials, score };
+        if (!scoreArray) {
+            scoreArray = [];
+        }
+        scoreArray.push(userScore);
+        localStorage.setItem("scores", JSON.stringify(scoreArray));
+        // console.log(scoreArray);
+    }
+
+    function retrieveScoresStorage() {
+        let scoreArray = localStorage.getItem("scores");
+        if (!scoreArray) {
+            scoreArray = [];
+        } else {
+            scoreArray = JSON.parse(scoreArray)
+        }
+        // Sorts Highscores to be in order on High score page
+        scoreArray.sort(function(a, b) {
+            return b.score - a.score;
+        });
+
+    }
+
+    
+    
+
+    $(".answer-button").on("click", ClickedAnswer);
+
+    $("#initials").on("submit", function(event) {
+        event.preventDefault();
+        localScoreStorage();
+        document.getElementById("finishedQuiz").style.display = "none";
+        document.getElementById("hscores").style.display = "block";
+    })
 
 });
 
