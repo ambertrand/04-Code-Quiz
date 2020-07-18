@@ -101,6 +101,7 @@ $(document).ready(function () {
         questionIndex++;
         showQuestions();
         gameOver();
+        finalScore();
     }
 
     $(".answer-button").on("click", ClickedAnswer);
@@ -115,7 +116,12 @@ $(document).ready(function () {
         };
     };
 
-    
+    // Displays final score on All Done screen
+    function finalScore() {
+        $("span#finalScore").text("Your Final Score is " + score);
+    }
+
+
 
 });
 
