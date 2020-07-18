@@ -80,11 +80,11 @@ $(document).ready(function () {
         timerLeft = setInterval(function () {
             timer--;
             timerDisplay.innerText = timer + " sec";
-            if (timer <= 0) {
+            if ((timer <= 0) || (questionIndex >= quizQuestions.length)) {
                 clearInterval(timerLeft);
-            } if (timer <= 0); {
-            gameOver();
-        }
+                // gameOver();
+                timer = 0;
+            }   
         }, 1000)
     };
 
@@ -92,16 +92,15 @@ $(document).ready(function () {
     function ClickedAnswer() {
         if (quizQuestions[questionIndex].correctAnswer === $(this).data("index")) {
             score++;
-            $("#questionAnswer").text("Correct!");
-            gameOver();
+            $("#questionAnswer").text("Correct!");   
         } else {
             $("#questionAnswer").text("Wrong");
             timer -= 10;
-            gameOver();
+            // gameOver();
         }
         questionIndex++;
-        console.log(questionIndex);
         showQuestions();
+        gameOver();
     }
 
     $(".answer-button").on("click", ClickedAnswer);
@@ -112,9 +111,11 @@ $(document).ready(function () {
             document.getElementById("startQuiz").style.display = "none";
             document.getElementById("finishedQuiz").style.display = "block";
             clearInterval(timerLeft);
+            timer = 0;
         };
     };
 
+    
 
 });
 
