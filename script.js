@@ -77,7 +77,7 @@ $(document).ready(function () {
         for (let i = 0; i <= quizQuestions[questionIndex].choices.length; i++) {
             $(".btn-" + i).text(quizQuestions[questionIndex].choices[i]);
         }
-    quizEnd();
+    // quizEnd();
     }
 
     // Checks the answer clicked with the correct answer and awards point if correct
@@ -89,10 +89,10 @@ $(document).ready(function () {
             $("#questionAnswer").text("Wrong");
             timer -= 10;   
         }
-        if (timer <= 0) {
-            document.getElementById("startQuiz").style.display = "none";
-            document.getElementById("finishedQuiz").style.display = "block";
-        } 
+        // if (timer <= 0) {
+        //     document.getElementById("startQuiz").style.display = "none";
+        //     document.getElementById("finishedQuiz").style.display = "block";
+        // } 
         // console.log(score);
         questionIndex++;
       showQuestions();
@@ -100,11 +100,13 @@ $(document).ready(function () {
 
     $(".answer-button").on("click", ClickedAnswer);
 
+    // Quiz ends when timer is less or equal to 0 or quiz is finished.
     function quizEnd () {
-    if (questionIndex >= quizQuestions.length) {
+    if (questionIndex >= quizQuestions.length  || (timer <= 0)) {
         document.getElementById("startQuiz").style.display = "none";
         document.getElementById("finishedQuiz").style.display = "block";
         }
+        console.log(quizEnd + "All Done");
     }
 
 
