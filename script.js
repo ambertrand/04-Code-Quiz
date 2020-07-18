@@ -44,7 +44,7 @@ $(document).ready(function () {
             correctAnswer: 1
         }
     ];
-// console.log(quizQuestions[2].questionTitle)
+    // console.log(quizQuestions[2].questionTitle)
 
     // Setting variables
     const timerDisplay = document.querySelector("#timeLeft");
@@ -59,17 +59,10 @@ $(document).ready(function () {
         // console.log("Button clicked");
         document.getElementById("startPage").style.display = "none";
         document.getElementById("startQuiz").style.display = "block";
-
-        timerLeft = setInterval(function () {
-            timer--;
-            timerDisplay.innerText = timer + "sec";
-            if (timer <= 0) {
-                clearInterval(timerLeft);
-                // quizEnd();
-            }
-        }, 1000)
         showQuestions();
+        timeClock();
     });
+
 
     //     //  Adds question from question array to appear on page and loops through all questions
     function showQuestions() {
@@ -77,36 +70,40 @@ $(document).ready(function () {
         for (let i = 0; i <= quizQuestions[questionIndex].choices.length; i++) {
             $(".btn-" + i).text(quizQuestions[questionIndex].choices[i]);
         }
-    // quizEnd();
     }
 
-    // Checks the answer clicked with the correct answer and awards point if correct
+    // Starts the timer and decreases every second
+    function timeClock() {
+        timerLeft = setInterval(function () {
+            timer--;
+            timerDisplay.innerText = timer + " sec";
+            if (timer <= 0) {
+                clearInterval(timerLeft);
+            }
+        }, 1000)
+    }
+
+    // Checks the answer clicked with the correct answer and awards point if correct, subtracts time if incorrect
     function ClickedAnswer() {
-      if (quizQuestions[questionIndex].correctAnswer === $(this).data("index")) {
+        if (quizQuestions[questionIndex].correctAnswer === $(this).data("index")) {
             score++;
-            $("#questionAnswer").text("Correct!");     
-        } else{
+            $("#questionAnswer").text("Correct!");
+        } else {
             $("#questionAnswer").text("Wrong");
-            timer -= 10;   
+            timer -= 10;
         }
-        // if (timer <= 0) {
-        //     document.getElementById("startQuiz").style.display = "none";
-        //     document.getElementById("finishedQuiz").style.display = "block";
-        // } 
-        // console.log(score);
         questionIndex++;
-      showQuestions();
+        showQuestions();
     }
 
     $(".answer-button").on("click", ClickedAnswer);
 
     // Quiz ends when timer is less or equal to 0 or quiz is finished.
-    function quizEnd () {
-    if (questionIndex >= quizQuestions.length  || (timer <= 0)) {
-        document.getElementById("startQuiz").style.display = "none";
-        document.getElementById("finishedQuiz").style.display = "block";
+    function quizEnd() {
+        if (questionIndex >= quizQuestions.length || timer < 1) {
+            document.getElementById("startQuiz").style.display = "none";
+            document.getElementById("finishedQuiz").style.display = "block";
         }
-        console.log(quizEnd + "All Done");
     }
 
 
