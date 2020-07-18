@@ -44,10 +44,10 @@ $(document).ready(function () {
             correctAnswer: 0
         },
     ];
-
+// console.log(quizQuestions[2].questionTitle)
 
     // Setting variables
-    const timerDisplay = document.querySelector("#timeLeft")
+    const timerDisplay = document.querySelector("#timeLeft");
     let timer = 45;
     let score = 0;
     let timerLeft;
@@ -73,24 +73,36 @@ $(document).ready(function () {
 
     //     //  Adds question from question array to appear on page and loops through all questions
     function showQuestions() {
-        $("h3#questionName").text(quizQuestions[questionIndex].questionTitle);
+        $("#questionName").text(quizQuestions[questionIndex].questionTitle);
         for (let i = 0; i < quizQuestions[questionIndex].choices.length; i++) {
             $(".btn-" + i).text(quizQuestions[questionIndex].choices[i]);
         }
-    };
-
-    function ClickedAnswer() {
-      if (quizQuestions[questionIndex].correctAnswer === $(this).data("index")) {
-            score++;     
-        }
-        console.log(score);
-        questionIndex++;
-        console.log("Index =" + questionIndex);
     }
 
+    // Checks the answer clicked with the correct answer and awards point if correct
+    function ClickedAnswer() {
+      if (quizQuestions[questionIndex].correctAnswer === $(this).data("index")) {
+            score++;
+            $("#questionAnswer").text("Correct!");     
+        } else {
+            $("#questionAnswer").text("Wrong");
+            timer -= 20;
+            timer <= 0
+            quizEnd();
+        }
+        // console.log(score);
+        questionIndex++;
+      showQuestions();
+    }
 
     $(".answer-button").on("click", ClickedAnswer);
 
+    function quizEnd () {
+        if (timer <= 0) {
+            $("#finalScore").text("Your final score is 0.");
+            timerDisplay.textContent = "0 sec";
+        }
+    }
 });
 
 
@@ -104,8 +116,6 @@ $(document).ready(function () {
 
 // ## Acceptance Criteria
 
-// WHEN I answer a question
-// THEN I am presented with another question
 // WHEN I answer a question incorrectly
 // THEN time is subtracted from the clock
 // WHEN all questions are answered or the timer reaches 0
