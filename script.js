@@ -40,9 +40,9 @@ $(document).ready(function () {
         },
         {
             questionTitle: "What is the outer most section of the box model",
-            choice1: ["Padding", "Margin", "Content", "Border"],
+            choices: ["Padding", "Margin", "Content", "Border"],
             correctAnswer: 1
-        },
+        }
     ];
 // console.log(quizQuestions[2].questionTitle)
 
