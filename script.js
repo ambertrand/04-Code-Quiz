@@ -57,15 +57,15 @@ $(document).ready(function () {
     // When start button clicked timer starts countdown and Quiz starts
     $("#startBtn").on("click", function () {
         // console.log("Button clicked");
-        document.querySelector("#startPage").style.display = "none";
-        document.querySelector("#startQuiz").style.display = "block";
+        document.getElementById("startPage").style.display = "none";
+        document.getElementById("startQuiz").style.display = "block";
 
         timerLeft = setInterval(function () {
             timer--;
             timerDisplay.innerText = timer + "sec";
             if (timer <= 0) {
                 clearInterval(timerLeft);
-                // finishedQuiz();
+                // quizEnd();
             }
         }, 1000)
         showQuestions();
@@ -84,12 +84,14 @@ $(document).ready(function () {
       if (quizQuestions[questionIndex].correctAnswer === $(this).data("index")) {
             score++;
             $("#questionAnswer").text("Correct!");     
-        } else {
+        } else{
             $("#questionAnswer").text("Wrong");
-            timer -= 20;
-            timer <= 0
-            quizEnd();
+            timer -= 10;   
         }
+        if (timer <= 0) {
+            document.getElementById("startQuiz").style.display = "none";
+            document.getElementById("finishedQuiz").style.display = "block";
+        } 
         // console.log(score);
         questionIndex++;
       showQuestions();
@@ -97,12 +99,14 @@ $(document).ready(function () {
 
     $(".answer-button").on("click", ClickedAnswer);
 
-    function quizEnd () {
-        if (timer <= 0) {
-            $("#finalScore").text("Your final score is 0.");
-            timerDisplay.textContent = "0 sec";
-        }
-    }
+    // function quizEnd () {
+    // if (questionIndex >= quizQuestions.length) {
+    //     $("#startPage").hide();
+    //     $("#finishedQuiz").show();
+    // }
+    // }
+
+
 });
 
 
@@ -116,8 +120,7 @@ $(document).ready(function () {
 
 // ## Acceptance Criteria
 
-// WHEN I answer a question incorrectly
-// THEN time is subtracted from the clock
+
 // WHEN all questions are answered or the timer reaches 0
 // THEN the game is over
 // WHEN the game is over
