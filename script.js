@@ -39,9 +39,9 @@ $(document).ready(function () {
             correctAnswer: 2
         },
         {
-            questionTitle: "How does a FOR loop start",
-            choice1: ["for (i = 0; i < 5; i++)", "for (i = 0; i < 5++)", "for (i <= 5; i+=)", "for i = 1 to 5"],
-            correctAnswer: 0
+            questionTitle: "What is the outer most section of the box model",
+            choice1: ["Padding", "Margin", "Content", "Border"],
+            correctAnswer: 1
         },
     ];
 // console.log(quizQuestions[2].questionTitle)
@@ -77,6 +77,7 @@ $(document).ready(function () {
         for (let i = 0; i <= quizQuestions[questionIndex].choices.length; i++) {
             $(".btn-" + i).text(quizQuestions[questionIndex].choices[i]);
         }
+    quizEnd();
     }
 
     // Checks the answer clicked with the correct answer and awards point if correct
@@ -99,12 +100,12 @@ $(document).ready(function () {
 
     $(".answer-button").on("click", ClickedAnswer);
 
-    // function quizEnd () {
-    // if (questionIndex >= quizQuestions.length) {
-    //     $("#startPage").hide();
-    //     $("#finishedQuiz").show();
-    // }
-    // }
+    function quizEnd () {
+    if (questionIndex >= quizQuestions.length) {
+        document.getElementById("startQuiz").style.display = "none";
+        document.getElementById("finishedQuiz").style.display = "block";
+        }
+    }
 
 
 });
