@@ -148,20 +148,29 @@ $(document).ready(function () {
             return b.score - a.score;
         });
 
-    }
+        // Loops through score array and shows initials on page
+        for (let i = 0; i < scoreArray.length; i++) {
+            let li = document.createElement("li");
+            li.textContent = (scoreArray[i].initials.toUpperCase() + "-" + scoreArray[i].score);
+            document.getElementById("highScoreList").appendChild(li);
+        }
+    }   
 
-    
-    
-
-    $(".answer-button").on("click", ClickedAnswer);
-
+    // When form is submitted to local storage, adds initals and score to page and updates Highscores page
     $("#initials").on("submit", function(event) {
         event.preventDefault();
+        $("#highScoreList").empty();
         localScoreStorage();
+        retrieveScoresStorage();
         document.getElementById("finishedQuiz").style.display = "none";
         document.getElementById("hscores").style.display = "block";
     })
 
+    // Event listeners
+    $(".answer-button").on("click", ClickedAnswer);
+    $(".clearScore").on("click", function() {
+        localStorage.clear();
+    });
 });
 
 
