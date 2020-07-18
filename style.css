@@ -3,7 +3,7 @@
 }
 
 #startPage {
-    display: none;
+    display: block;
 }
 
 #startQuiz {
@@ -15,5 +15,5 @@
 }
 
 #finishedQuiz {
-    display: block;
+    display: none;
 }

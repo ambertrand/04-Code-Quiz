@@ -74,7 +74,7 @@ $(document).ready(function () {
     //     //  Adds question from question array to appear on page and loops through all questions
     function showQuestions() {
         $("#questionName").text(quizQuestions[questionIndex].questionTitle);
-        for (let i = 0; i < quizQuestions[questionIndex].choices.length; i++) {
+        for (let i = 0; i <= quizQuestions[questionIndex].choices.length; i++) {
             $(".btn-" + i).text(quizQuestions[questionIndex].choices[i]);
         }
     }
