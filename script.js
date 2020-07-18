@@ -66,11 +66,14 @@ $(document).ready(function () {
 
     //     //  Adds question from question array to appear on page and loops through all questions
     function showQuestions() {
+        if ((questionIndex >= quizQuestions.length)) {
+            return gameOver();
+        } 
         $("#questionName").text(quizQuestions[questionIndex].questionTitle);
         for (let i = 0; i <= quizQuestions[questionIndex].choices.length; i++) {
             $(".btn-" + i).text(quizQuestions[questionIndex].choices[i]);
         }
-    }
+    };
 
     // Starts the timer and decreases every second
     function timeClock() {
@@ -79,44 +82,44 @@ $(document).ready(function () {
             timerDisplay.innerText = timer + " sec";
             if (timer <= 0) {
                 clearInterval(timerLeft);
-            }
+            } if (timer <= 0); {
+            gameOver();
+        }
         }, 1000)
-    }
+    };
 
     // Checks the answer clicked with the correct answer and awards point if correct, subtracts time if incorrect
     function ClickedAnswer() {
         if (quizQuestions[questionIndex].correctAnswer === $(this).data("index")) {
             score++;
             $("#questionAnswer").text("Correct!");
+            gameOver();
         } else {
             $("#questionAnswer").text("Wrong");
             timer -= 10;
+            gameOver();
         }
         questionIndex++;
+        console.log(questionIndex);
         showQuestions();
     }
 
     $(".answer-button").on("click", ClickedAnswer);
 
     // Quiz ends when timer is less or equal to 0 or quiz is finished.
-    function quizEnd() {
-        if (questionIndex >= quizQuestions.length || timer < 1) {
+    function gameOver() {
+        if ((questionIndex >= quizQuestions.length) || (timer <= 0)) {
             document.getElementById("startQuiz").style.display = "none";
             document.getElementById("finishedQuiz").style.display = "block";
-        }
-    }
+            clearInterval(timerLeft);
+        };
+    };
 
 
 });
 
 
-//## User Story
 
-// ```
-// AS A coding bootcamp student
-// I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-// SO THAT I can gauge my progress compared to my peers
-// ```
 
 // ## Acceptance Criteria
 
