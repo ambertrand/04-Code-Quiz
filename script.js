@@ -66,6 +66,8 @@ $(document).ready(function () {
     function showQuestions() {
         if ((questionIndex >= quizQuestions.length)) {
             return gameOver();
+            // document.getElementById("startQuiz").style.display = "none";
+            // document.getElementById("finishedQuiz").style.display = "block";
         } 
         $("#questionName").text(quizQuestions[questionIndex].questionTitle);
         for (let i = 0; i <= quizQuestions[questionIndex].choices.length; i++) {
@@ -78,6 +80,18 @@ $(document).ready(function () {
         timerLeft = setInterval(function () {
             timer--;
             timerDisplay.innerText = timer + " sec";
+            if (timer <= 0) {
+                clearInterval(timerLeft);
+                timerDisplay.textContent = "0 sec";
+                gameOver();
+            }
+            // console.log(questionIndex);
+            // console.log(quizQuestions.length);
+            if (questionIndex >= quizQuestions.length) {
+                clearInterval(timerLeft);
+                timerDisplay.textContent = "0 sec";
+                gameOver();
+            }
         }, 1000)
     };
 
@@ -92,7 +106,7 @@ $(document).ready(function () {
         }
         questionIndex++;
         showQuestions();
-        gameOver();
+        // gameOver();
         finalScore();
     };
 
