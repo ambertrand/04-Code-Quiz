@@ -85,8 +85,6 @@ $(document).ready(function () {
                 timerDisplay.textContent = "0 sec";
                 gameOver();
             }
-            // console.log(questionIndex);
-            // console.log(quizQuestions.length);
             if (questionIndex >= quizQuestions.length) {
                 clearInterval(timerLeft);
                 timerDisplay.textContent = "0 sec";
@@ -106,7 +104,7 @@ $(document).ready(function () {
         }
         questionIndex++;
         showQuestions();
-        // gameOver();
+        gameOver();
         finalScore();
     };
 
