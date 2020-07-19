@@ -72,19 +72,15 @@ $(document).ready(function () {
         $("#questionName").text(quizQuestions[questionIndex].questionTitle);
         for (let i = 0; i <= quizQuestions[questionIndex].choices.length; i++) {
             $(".btn-" + i).text(quizQuestions[questionIndex].choices[i]);
-        }
+        }      
     };
 
     // Starts the timer and decreases every second
     function timeClock() {
+        timer = 20;
         timerLeft = setInterval(function () {
             timer--;
             timerDisplay.innerText = timer + " sec";
-            if ((timer <= 0) || (questionIndex >= quizQuestions.length)) {
-                clearInterval(timerLeft);
-                // gameOver();
-                timer = 0;
-            }   
         }, 1000)
     };
 
@@ -92,17 +88,16 @@ $(document).ready(function () {
     function ClickedAnswer() {
         if (quizQuestions[questionIndex].correctAnswer === $(this).data("index")) {
             score++;
-            $("#questionAnswer").text("Correct!");   
-        } else {
+            $("#questionAnswer").text("Correct!");  
+     } else {
             $("#questionAnswer").text("Wrong");
             timer -= 10;
-            // gameOver();
         }
         questionIndex++;
         showQuestions();
         gameOver();
         finalScore();
-    }
+    };
 
 
 
@@ -111,8 +106,6 @@ $(document).ready(function () {
         if ((questionIndex >= quizQuestions.length) || (timer <= 0)) {
             document.getElementById("startQuiz").style.display = "none";
             document.getElementById("finishedQuiz").style.display = "block";
-            clearInterval(timerLeft);
-            timer = 0;
         };
     };
 
@@ -151,7 +144,7 @@ $(document).ready(function () {
         // Loops through score array and shows initials on page
         for (let i = 0; i < scoreArray.length; i++) {
             let li = document.createElement("li");
-            li.textContent = (scoreArray[i].initials.toUpperCase() + "-" + scoreArray[i].score);
+            li.textContent = (scoreArray[i].initials.toUpperCase() + " - " + scoreArray[i].score);
             document.getElementById("highScoreList").appendChild(li);
         }
     }   
@@ -168,8 +161,19 @@ $(document).ready(function () {
 
     // Event listeners
     $(".answer-button").on("click", ClickedAnswer);
-    $(".clearScore").on("click", function() {
+    $(".clearScores").on("click", function() {
         localStorage.clear();
+        $("#highScoreList").empty();
+    });
+    $(".goBack").on("click", function() {
+        document.getElementById("hscores").style.display = "none";
+        document.getElementById("startPage").style.display = "block";
+    });
+    $("#highScores").on("click", function() {
+        document.getElementById("startPage").style.display = "none";
+        document.getElementById("startQuiz").style.display = "none";
+        document.getElementById("finishedQuiz").style.display = "none";
+        document.getElementById("hscores").style.display = "block";
     });
 });
 
