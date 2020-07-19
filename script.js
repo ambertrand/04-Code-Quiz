@@ -44,7 +44,6 @@ $(document).ready(function () {
             correctAnswer: 1
         }
     ];
-    // console.log(quizQuestions[2].questionTitle)
 
     // Setting variables
     const timerDisplay = document.querySelector("#timeLeft");
@@ -56,7 +55,6 @@ $(document).ready(function () {
 
     // When start button clicked timer starts countdown and Quiz starts
     $("#startBtn").on("click", function () {
-        // console.log("Button clicked");
         document.getElementById("startPage").style.display = "none";
         document.getElementById("startQuiz").style.display = "block";
         showQuestions();
@@ -77,7 +75,6 @@ $(document).ready(function () {
 
     // Starts the timer and decreases every second
     function timeClock() {
-        timer = 20;
         timerLeft = setInterval(function () {
             timer--;
             timerDisplay.innerText = timer + " sec";
@@ -126,7 +123,6 @@ $(document).ready(function () {
         }
         scoreArray.push(userScore);
         localStorage.setItem("scores", JSON.stringify(scoreArray));
-        // console.log(scoreArray);
     }
 
     function retrieveScoresStorage() {
@@ -176,14 +172,3 @@ $(document).ready(function () {
         document.getElementById("hscores").style.display = "block";
     });
 });
-
-
-
-
-// ## Acceptance Criteria
-
-
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
-// WHEN the game is over
-// THEN I can save my initials and score
