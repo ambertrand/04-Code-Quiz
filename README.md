@@ -6,6 +6,11 @@ The goal of this project was to create a timed coding quiz that prompted questio
 ## Deployed Web App: 
 [Alex's Code Quiz](https://ambertrand.github.io/04-Code-Quiz/)
 
+## Technologies Used
+    * Basic: HTML, CSS, Javascript
+    * Bootstrap
+    * JQuery
+
 ## Developer Notes: 
 For this project I was tasked with developing a timed code quiz that the user could take by answering the questions as they were prompted then adding their initials and final score to the Highscores page.  Starting out I was able to get the different pages needed set.
 
